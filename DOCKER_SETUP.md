@@ -31,7 +31,7 @@ This guide will walk you through setting up automated Docker image builds and pu
    - **Name**: `DOCKERHUB_USERNAME`
    - **Value**: Your Docker Hub username
 
-   - **Name**: `DOCKERHUB_TOKEN`  
+   - **Name**: `DOCKERHUB_TOKEN`
    - **Value**: The access token you created in Step 1
 
 ## Step 3: Update Repository Name
@@ -69,7 +69,7 @@ git push origin main
 The workflow automatically creates these tags:
 
 - `latest` - Latest build from main branch
-- `develop` - Builds from develop branch  
+- `develop` - Builds from develop branch
 - `v1.0.0` - Specific version tags (when you create Git tags)
 - `main` - Branch name tags
 
@@ -80,7 +80,7 @@ The workflow automatically creates these tags:
 ✅ **Build attestations** for supply chain security  
 ✅ **Non-root user** in Docker container  
 ✅ **Minimal attack surface** with slim base image  
-✅ **Automated dependency updates** with Dependabot  
+✅ **Automated dependency updates** with Dependabot
 
 ## Using in Kubernetes
 
@@ -103,29 +103,29 @@ spec:
         app: prism-api
     spec:
       containers:
-      - name: prism-api
-        image: your-dockerhub-username/k3s-api:latest
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        - name: prism-api
+          image: your-dockerhub-username/k3s-api:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
 ---
 apiVersion: v1
 kind: Service
@@ -135,25 +135,28 @@ spec:
   selector:
     app: prism-api
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+    - protocol: TCP
+      port: 80
+      targetPort: 80
   type: ClusterIP
 ```
 
 ## Troubleshooting
 
 ### Build Failed
+
 - Check that your Docker Hub credentials are correct
 - Verify the repository name matches your Docker Hub repository
 - Check the build logs in GitHub Actions
 
 ### Image Not Found
+
 - Make sure the repository exists on Docker Hub
 - Check that the workflow completed successfully
 - Verify the image name and tag
 
 ### Permission Denied
+
 - Ensure your Docker Hub token has write permissions
 - Check that the token hasn't expired
 

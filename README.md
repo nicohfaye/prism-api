@@ -11,7 +11,7 @@ This application is containerized and automatically built and pushed to Docker H
 Images are available on Docker Hub: `your-dockerhub-username/k3s-api`
 
 - `latest` - Latest stable release from main branch
-- `develop` - Development builds from develop branch  
+- `develop` - Development builds from develop branch
 - `v1.0.0` - Specific version tags
 - Multi-architecture support: `linux/amd64`, `linux/arm64`
 
@@ -43,10 +43,10 @@ spec:
         app: prism-api
     spec:
       containers:
-      - name: prism-api
-        image: your-dockerhub-username/k3s-api:latest
-        ports:
-        - containerPort: 80
+        - name: prism-api
+          image: your-dockerhub-username/k3s-api:latest
+          ports:
+            - containerPort: 80
 ```
 
 ## 🚀 Development
