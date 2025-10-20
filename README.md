@@ -1,19 +1,10 @@
 # Prism API
 
-My personal FastAPI application for my Kubernetes cluster.
+My FastAPI for my Kubernetes cluster.
 
 ## 🐳 Docker
 
 This application is containerized and automatically built and pushed to Docker Hub via GitHub Actions.
-
-### Available Images
-
-Images are available on Docker Hub: `your-dockerhub-username/k3s-api`
-
-- `latest` - Latest stable release from main branch
-- `develop` - Development builds from develop branch
-- `v1.0.0` - Specific version tags
-- Multi-architecture support: `linux/amd64`, `linux/arm64`
 
 ### Local Development
 
@@ -63,9 +54,3 @@ uv run fastapi dev app/main.py
 # Run with hot reload
 uv run fastapi dev app/main.py --reload
 ```
-
-## 🔒 Security
-
-- Automated vulnerability scanning with Trivy
-- Multi-stage Docker builds for minimal attack surface
-- Regular dependency updates via Dependabot
